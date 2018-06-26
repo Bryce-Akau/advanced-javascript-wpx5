@@ -16,7 +16,13 @@ const fakeAxios = {
   }
 }
 
-export default class MyComponentThatFetchesData extends Component {
+const makeHOC = BaseComponent => function() {
+  return (
+    <BaseComponent />
+  )
+}
+
+const withData = url => BaseComponent => class extends Component {
   constructor() {
     super();
     this.state = {
@@ -25,7 +31,7 @@ export default class MyComponentThatFetchesData extends Component {
   }
 
   componentDidMount() {
-    fakeAxios.get('some url').then(response => {
+    fakeAxios.get(url).then(response => {
       this.setState({
         data: response.data
       })
@@ -33,7 +39,17 @@ export default class MyComponentThatFetchesData extends Component {
   }
 
   render() {
-    const comments = this.state.data;
+    if (this.state.data.length) {
+      return <BaseComponent data={this.state.data} />
+    } else {
+      return <div>Loading...</div>
+    }
+  }
+}
+
+class MyComponentThatFetchesData extends Component {
+  render() {
+    const comments = this.props.data;
     return (
       <div>
         {comments.map(x => (
@@ -46,3 +62,7 @@ export default class MyComponentThatFetchesData extends Component {
     );
   }
 }
+
+// export default makeHOC(MyComponentThatFetchesData)
+// export default connect(mapStateToProps)(MyComponent)
+export default withData('some fake url')(MyComponentThatFetchesData)
