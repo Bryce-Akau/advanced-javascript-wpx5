@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import CommentsList from './CommentsList';
-// import CommentsListContainer from './CommentsListContainer'
-import Post from './Post';
+import MyComponentThatFetchesData from './MyComponentThatFetchesData';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Post />
+        <MyComponentThatFetchesData />
       </div>
     );
   }
