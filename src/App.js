@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 // import CommentsList from './CommentsList';
+// import CommentsListContainer from './CommentsListContainer'
 import Post from './Post';
 
 class App extends Component {

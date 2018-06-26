@@ -15,7 +15,7 @@ const fakeAxios = {
         author: 'Jin',
         text: 'I love DevMtn',
       }
-      setTimeout(() => resolve({ data: { post, comments }} ), 1000);
+      setTimeout(() => resolve({ data: { post, comments }} ), 5000);
     })
   }
 }
